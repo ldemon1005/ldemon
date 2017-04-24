@@ -160,5 +160,5 @@ class Student(models.Model):
         managed = False
         db_table = 'student'
 class Studentimage(models.Model):
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey('home_models.Student')
     image=models.ImageField(upload_to='static/images/home/',null=True,blank=True)
