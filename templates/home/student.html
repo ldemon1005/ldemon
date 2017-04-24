@@ -1,0 +1,59 @@
+{% extends "home\base.html" %}
+{% load static %}
+{% load custom_filter %}
+{% block placeHolder %}
+ <div class="container" >
+        <script>
+            var name;
+            window.onload= function getQueryVariable() {
+                var query = window.location.href;
+                var student = query.split("?");
+                var x=student[1];
+                var str2=decodeURI(student[2]);
+                var str3=decodeURI(student[3]);
+                var str4=decodeURI(student[4]);
+                var str5=decodeURI(student[5]);
+                var anhdaidien="{"+"% "+"static"+" '"+"images/home/depdai.jpg"+"' "+"%"+"}";
+                var x1="images/home/like2.jpg";
+                {% static "" as baseUrl %}
+                xx="{{ baseUrl }}"+str3;
+                var str=decodeURI(student[1]);
+                document.getElementById("abc1").innerHTML ="Họ Tên : "+ str;
+                document.getElementById("abc2").innerHTML="Số Điện Thoại"+str2;
+                document.getElementById("abc3").innerHTML="Liên Khóa : "+str4;
+                document.getElementById("abc6").innerHTML="Lớp : "+str5;
+                document.getElementById("abc5").src=xx;
+            }
+        </script>
+        <div class="row">
+
+            <div class="col-md-3">
+                <h3 id="abc1"></h3>
+                <h4 id="abc2" ></h4>
+                <h4 id="abc3" ></h4>
+                <h4 id="abc6" ></h4>
+                <h4 id="abc4" ><a href="https://www.facebook.com/profile.php?id=100006117277988" >FACEBOOK</a></h4>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div class="item">
+                            <img  id="abc5" src="{% static 'images/home/dangnhap.jpg' %}" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}

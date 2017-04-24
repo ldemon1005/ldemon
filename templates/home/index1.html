@@ -1,0 +1,121 @@
+{% extends "home\base.html" %}
+{% load static %}
+{% load custom_filter %}
+{% block placeHolder %}
+
+ <div class="container">
+
+        <script>
+            var name;
+            window.onload= function getQueryVariable() {
+                var query = window.location.href;
+                var student = query.split("?");
+                var str=decodeURI(student[2]);
+                var list = document.getElementsByClassName("thumbnail");
+                for(var i = list.length - 1; 0 <= i; i--)
+                    if(list[i].id !=student[1]){
+                        list[i].parentElement.removeChild(list[i]);
+                    }
+
+            }
+        </script>
+        <form action="/search/"  method="post" >
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Liên Khóa</p>
+                    <div class="panel panel-default">
+                    <a href="/homechat/">Home Chat</a>
+                </div>
+                {% for inter in interlock %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a id="lienkhoa" data-toggle="collapse" data-parent="#accordian" href="#{{ inter.interlock_name }}" >
+                                    <span  class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                    {{ inter.interlock_name }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="{{ inter.interlock_name }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    {% for foo in inter.interlock_name|getClasss %}
+                                        <li ><a href="home/index1.html?{{ inter.interlock_name }},{{ foo.class_name }}" >{{ foo.class_name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="{% static 'images/home/dangnhap.jpg' %}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="{% static 'images/home/like2.jpg' %}" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="{% static 'images/home/like1.jpg' %}" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="student" class="row">
+
+                    {% for foo in Student %}
+                        <div id="{{ foo.st_lop }}" class="">
+                        <div class="thumbnail" id="{{ foo.st_lienkhoa }},{{ foo.st_lop }}"  >
+                            <img id="imgimg" src="{% static foo.st_img %}" alt="" href="home/student.html" >
+                            <div class="caption">
+                                <h4><a href="home/student.html?{{ foo.st_ten }}?{{ foo.st_sdt }}?{{ foo.st_img }}?{{ foo.st_id }}">{{ foo.st_ten }}</a>
+                                </h4>
+                                <p>{{ foo.st_sdt }}</p>
+                                <p>{{ foo.st_lop }}</p>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+
+
+
+
+
+                    <div class="">
+                        <p>facebook<a target="_blank" href="https://www.facebook.com/profile.php?id=100006117277988">   Của  </a>Tuấn Đẹp Dai</p>
+                        <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/profile.php?id=100006117277988">Visit facebook</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        </form>
+
+    </div>
+
+
+{% endblock %}

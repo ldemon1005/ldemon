@@ -1,0 +1,42 @@
+{% extends "home\base.html" %}
+{% load static %}
+{% load custom_filter %}
+{% block placeHolder %}
+ <div class="container" >
+        {% for foo in Student1 %}
+            <div class="row">
+
+            <div class="col-md-3">
+                <h3 id="abc1">Họ Tên : {{ foo.st_ten }}</h3>
+                <h4 id="abc2" >Lớp {{ foo.st_lop }}</h4>
+                <h4 id="abc3" >Số Điện Thoại : {{ foo.st_sdt }}</h4>
+                <h4 id="abc3" >Liên Khóa : {{ foo.st_lienkhoa }}</h4>
+                <h4 id="abc3" >Lớp : {{ foo.st_lop }}</h4>
+                <h4 id="abc4" ><a href="https://www.facebook.com/profile.php?id=100006117277988" >FACEBOOK</a></h4>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div class="item">
+                            <img  id="abc5" src="{% static foo.st_img %}" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            `</div>
+        {% endfor %}
+
+
+
+    </div>
+
+
+{% endblock %}
